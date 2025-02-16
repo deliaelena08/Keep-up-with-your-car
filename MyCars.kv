@@ -1,0 +1,448 @@
+
+WindowManager:
+    LoginPage:
+    HomePage:
+    ForgotUsername:
+    AddCarPage:
+    History:
+    ModifyCarPage:
+
+<LoginPage>:
+    name:"login"
+    size_hint: 0.9,0.7
+    pos_hint:{"center_x":0.5,"center_y":0.5}
+    GridLayout:
+        spacing:"10dp"
+        cols:1
+        Label:
+            text:"Bun venit!"
+            pos_hint:{'x': 0.9, 'y': 0.95}
+            font_size :"30dp"
+        MDTextField:
+            id :email
+            hint_text:" Email utilizator "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            icon_right:"account"
+            font_size:30
+            size_hint_x:0.85
+            pos_hint:{'x':0.5,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+        MDTextField:
+            id :password
+            hint_text:"Parola utilizator "
+            password: True
+            password_mask: '•'
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            icon_right:"account"
+            font_size:30
+            size_hint_x:0.85
+            pos_hint:{'x':0.5,'y':0.3}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDIconButton:
+            icon: "eye"
+            ripple_scale: .5
+            pos_hint: {'center_x': 0.5,"center_y": 0.4}
+            pos: password.width - self.width + dp(8), 0
+            on_release:
+                self.icon = "eye" if self.icon == "eye-off" else "eye-off"
+                password.password = False if password.password is True else True
+
+        MDRectangleFlatButton:
+            text:"Inregistreaza"
+            on_press:app.logger()
+        MDRectangleFlatButton:
+            text:"Continuati"
+            on_release:app.root.current="home"
+        MDRectangleFlatButton:
+            text:"Am uitat numele utilizatorului"
+            on_release:app.root.current="forgot"
+        MDRectangleFlatButton:
+            text:"Iesire"
+            on_release: app.stop()
+
+<ForgotUsername>:
+    name:"forgot"
+    size_hint: 0.9,0.7
+    pos_hint:{"center_x":0.5,"center_y":0.5}
+    GridLayout:
+        spacing:"10dp"
+        cols:1
+        Label:
+            text:"Schimbare nume utilizator"
+            pos_hint:{'x': 0.9, 'y': 0.95}
+            font_size :"30dp"
+        MDTextField:
+            id: new_email
+            hint_text:" Email nou de utilizator "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            icon_right:"account"
+            font_size:30
+            size_hint_x:0.85
+            pos_hint:{'x':0.5,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+        MDTextField:
+            id: new_password
+            hint_text:" Parola noua de utilizator "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            password: True
+            password_mask: '•'
+            icon_right:"account"
+            font_size:30
+            size_hint_x:0.85
+            pos_hint:{'x':0.5,'y':0.3}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+        MDTextField:
+            id: confirm_password
+            hint_text:" Confirmare parola "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            password: True
+            password_mask: '•'
+            icon_right:"account"
+            font_size:30
+            size_hint_x:0.85
+            pos_hint:{'x':0.5,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+        MDRectangleFlatButton:
+            text:"Adaugare"
+            on_release:app.add_user()
+
+        MDRectangleFlatButton:
+            text:"Inapoi la logare"
+            on_release:app.root.current="login"
+
+
+<AddCarPage>:
+    name:"addcar"
+    pos_hint:{"center_x":0.5,"center_y":0.5}
+    GridLayout:
+        spacing:"5dp"
+        cols:1
+        validator: "date"
+        date_format: "dd/mm/yyyy"
+        Label:
+            id:label_add
+            text:"Introduceti o noua masina"
+            pos_hint:{'x': 0.9, 'y': 0.95}
+            font_size :"20dp"
+        MDTextField:
+            id : marca
+            hint_text:"Marca masinii"
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.7,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : tip
+            hint_text:" Tipul masinii "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.65,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : inmatriculare
+            hint_text:"Numar de inmatriculare"
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.7,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : identificare
+            hint_text:" Numar de identificare "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.6,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : itp
+            hint_text:" ITP (format: dd/mm/yyyy) "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.55,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : rovineta
+            hint_text:" Rovineta (format: dd/mm/yyyy)  "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.5,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : asigurare
+            hint_text:" Asigurare (format: dd/mm/yyyy)  "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.7
+            pos_hint:{'x':0.45,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : licenta
+            hint_text:" Licenta (format: dd/mm/yyyy) "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.4,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : tahograf
+            hint_text:" Tahograf (format: dd/mm/yyyy)  "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.35,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDRectangleFlatButton:
+            text:"    Finalizat    "
+            on_release:app.add_car()
+        MDRectangleFlatButton:
+            text:"    Inapoi     "
+            on_release:app.root.current="home"
+
+<HomePage>:
+    name:"home"
+    GridLayout:
+        cols:1
+        spacing:"5dp"
+        Label:
+            text:"Alegeti optiunea dorita"
+            pos_hint:{'x': 0.9, 'y': 0.95}
+            font_size :"30dp"
+        MDRectangleFlatButton:
+            text:"Istoric"
+            on_release:app.root.current="istoric"
+        MDRectangleFlatButton:
+            text:"Introducere o noua masina"
+            on_release:app.root.current="addcar"
+            halign:'center'
+        MDRectangleFlatButton:
+            text:"Modificare masina"
+            on_release: app.find_car()
+            halign:'center'
+        MDRectangleFlatButton:
+            text:"Stergere masina"
+            on_release: app.delete_car()
+            halign:'center'
+        MDRectangleFlatButton:
+            text:"Iesire"
+            on_release: app.stop()
+            halign:'center'
+
+<History>:
+    name:"istoric"
+    GridLayout:
+        cols:1
+        spacing:"5dp"
+        MDBoxLayout:
+            orientation:'vertical'
+            Label:
+                text: "Istoric masini"
+                font_size: "20sp"
+                width: 200
+                size_hint_x: None
+                size_hint_y: None
+                height: "1065dp"
+
+            MDBoxLayout:
+                id: table_container
+                orientation: 'vertical'
+                padding: dp(10)
+                size_hint: 1, 1
+
+            MDBoxLayout:
+                spacing:"5dp"
+                size_hint_y: None
+                height: "50dp"
+                MDRectangleFlatButton:
+                    text: "Afiseaza"
+                    on_release: app.show_records()
+                    pos_hint: {'center_x': 0.5}
+
+                MDRectangleFlatButton:
+                    text: "Inapoi"
+                    on_release: app.root.current = "home"
+                    pos_hint: {'center_x': 0.5}
+
+<ModifyCarPage>:
+    name:"modifica"
+    pos_hint:{"center_x":0.5,"center_y":0.5}
+    GridLayout:
+        spacing:"5dp"
+        cols:1
+        validator: "date"
+        date_format: "dd/mm/yyyy"
+        Label:
+            id:label_add
+            text:"Modificati datele"
+            pos_hint:{'x': 0.9, 'y': 0.95}
+            font_size :"20dp"
+        MDTextField:
+            id : marca
+            hint_text:"Marca masinii"
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.7,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : tip
+            hint_text:" Tipul masinii "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.65,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : inmatriculare
+            hint_text:"Numar de inmatriculare"
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.7,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : identificare
+            hint_text:" Numar de identificare "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.6,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : itp
+            hint_text:" ITP (format: dd/mm/yyyy) "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.55,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : rovineta
+            hint_text:" Rovineta (format: dd/mm/yyyy)  "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.5,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : asigurare
+            hint_text:" Asigurare (format: dd/mm/yyyy)  "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.7
+            pos_hint:{'x':0.45,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : licenta
+            hint_text:" Licenta (format: dd/mm/yyyy) "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.4,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDTextField:
+            id : tahograf
+            hint_text:" Tahograf (format: dd/mm/yyyy)  "
+            helper_text: ""
+            helper_text_mode:"on_focus"
+            font_size:20
+            size_hint_x:0.85
+            pos_hint:{'x':0.35,'y':0.5}
+            multiline:False
+            mode:"fill"
+            fill_color:[0,0,1,0.8]
+
+        MDRectangleFlatButton:
+            text:"    Finalizat    "
+            on_release:app.modify()
+        MDRectangleFlatButton:
+            text:"    Inapoi     "
+            on_release:app.root.current="home"
